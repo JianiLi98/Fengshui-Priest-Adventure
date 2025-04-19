@@ -1,0 +1,269 @@
+[gd_scene load_steps=16 format=3 uid="uid://bohho24m5uvlv"]
+
+[ext_resource type="Script" uid="uid://dscbps14r66fs" path="res://scripts/player.gd" id="1_rvslj"]
+[ext_resource type="Texture2D" uid="uid://dfglxg0uv4dot" path="res://assets/Priest.png" id="2_0bbpv"]
+[ext_resource type="Texture2D" uid="uid://be1bo7a8pwsmj" path="res://assets/kenney_monochrome-pirates/Monochrome/Tilemap/tilemap.png" id="3_0bbpv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rarhs"]
+texture = ExtResource("3_0bbpv")
+separation = Vector2i(1, 1)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vcsgt"]
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_rarhs")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu6xs"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0du0"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(0, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rarhs"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(0, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcsgt"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(75, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c01mt"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(0, 225, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxtc6"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(75, 225, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlsqs"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8u5g"]
+atlas = ExtResource("2_0bbpv")
+region = Rect2(75, 150, 75, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cm0pq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu6xs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0du0")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rarhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcsgt")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c01mt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxtc6")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlsqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8u5g")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvslj"]
+radius = 23.0
+height = 72.0
+
+[node name="Main" type="Node2D"]
+position = Vector2(112, 102)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_vcsgt")
+format = 2
+layer_0/tile_data = PackedInt32Array(-327687, 393218, 0, -327686, 458754, 0, -327685, 458754, 0, -327684, 458754, 0, -327683, 458754, 0, -327682, 458754, 0, -327681, 458754, 0, -393216, 458754, 0, -393215, 458754, 0, -393214, 458754, 0, -393213, 458754, 0, -393212, 458754, 0, -393211, 458754, 0, -393210, 524290, 0, -327674, 524290, 1, -262138, 524290, 1, -196602, 524290, 1, -131066, 524290, 1, -65530, 524290, 1, 6, 524290, 1, 65542, 524290, 1, 131078, 524290, 1, 196614, 524290, 2, 196612, 458754, 2, 196611, 458754, 2, 196610, 458754, 2, 196609, 458754, 2, 196608, 458754, 2, 262143, 458754, 2, 262142, 458754, 2, 262141, 458754, 2, 262140, 458754, 2, 262139, 458754, 2, 262138, 458754, 2, 262137, 393218, 2, 196601, 393218, 1, 131065, 393218, 1, 65529, 393218, 1, -7, 393218, 1, -131074, 458754, 1, -262150, 458754, 1, -262149, 458754, 1, -262148, 458754, 1, -262147, 458754, 1, -262146, 458754, 1, -262145, 458754, 1, -327680, 458754, 1, -262144, 458754, 1, -262143, 458754, 1, -262142, 458754, 1, -262141, 458754, 1, -262140, 458754, 1, -327679, 458754, 1, -327678, 458754, 1, -327677, 458754, 1, -327676, 458754, 1, -327675, 458754, 1, -262139, 458754, 1, -196603, 458754, 1, -131067, 458754, 1, -65531, 458754, 1, 5, 458754, 1, 65541, 458754, 1, 131077, 458754, 1, 131076, 458754, 1, 131075, 458754, 1, 131074, 458754, 1, 131073, 458754, 1, 131072, 458754, 1, 196607, 458754, 1, 196606, 458754, 1, 196605, 458754, 1, 131069, 458754, 1, 131068, 458754, 1, 131067, 458754, 1, 131066, 458754, 1, 196602, 458754, 1, 196603, 458754, 1, 196604, 458754, 1, 65530, 458754, 1, -6, 458754, 1, -65542, 458754, 1, -131078, 458754, 1, -196614, 458754, 1, -196613, 458754, 1, -196612, 458754, 1, -131077, 458754, 1, -65541, 458754, 1, -5, 458754, 1, 65531, 458754, 1, 65532, 458754, 1, -4, 458754, 1, -65540, 458754, 1, -131076, 458754, 1, -196611, 458754, 1, -131075, 458754, 1, -65539, 458754, 1, -3, 458754, 1, 65533, 458754, 1, 65534, 458754, 1, -2, 458754, 1, -65538, 458754, 1, -196610, 458754, 1, -196609, 458754, 1, -131073, 458754, 1, -65537, 458754, 1, -1, 458754, 1, 65535, 458754, 1, 131070, 458754, 1, 131071, 458754, 1, 65536, 458754, 1, 0, 458754, 1, -65536, 458754, 1, -131072, 458754, 1, -196608, 458754, 1, -196607, 458754, 1, -131071, 458754, 1, -65535, 458754, 1, 1, 458754, 1, 65537, 458754, 1, 65538, 458754, 1, 2, 458754, 1, -65534, 458754, 1, -131070, 458754, 1, -196606, 458754, 1, -196605, 458754, 1, -131069, 458754, 1, -131068, 458754, 1, -65532, 458754, 1, 4, 458754, 1, 65540, 458754, 1, -196604, 458754, 1, -65533, 458754, 1, 3, 458754, 1, 65539, 458754, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_rvslj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(11, 0)
+sprite_frames = SubResource("SpriteFrames_cm0pq")
+animation = &"walk_up"
+frame_progress = 0.908447
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_rvslj")
