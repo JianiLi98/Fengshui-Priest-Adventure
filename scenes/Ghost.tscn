@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://bd1bvuo2c20yw"]
+
+[ext_resource type="Script" uid="uid://2g1a3lugdqoj" path="res://scenes/ghost.gd" id="1_bo3t2"]
+[ext_resource type="Texture2D" uid="uid://da6uuu20bska3" path="res://assets/Brain Mole Monarch Sprite Sheet.png" id="2_ggg0v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u3ic"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrxcc"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5pdv"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75fd3"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsnke"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stpnr"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ni46"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjfvf"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wlvx"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paflj"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttocm"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ram"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ggg0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u3ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrxcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5pdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75fd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsnke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stpnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ni46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjfvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wlvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paflj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttocm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3ram")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggg0v"]
+size = Vector2(130, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7u3ic"]
+radius = 107.019
+
+[node name="Ghost" type="CharacterBody2D"]
+script = ExtResource("1_bo3t2")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 4.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ggg0v")
+animation = &"ghost"
+frame = 7
+frame_progress = 0.468474
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 13)
+shape = SubResource("RectangleShape2D_ggg0v")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 11)
+shape = SubResource("CircleShape2D_7u3ic")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
