@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgtsjouyy6ylr"]
+
+[ext_resource type="Script" uid="uid://c7tosdlqt4edr" path="res://scenes/winscreen.gd" id="1_uirh1"]
+
+[sub_resource type="FontVariation" id="FontVariation_q8ut1"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uirh1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -597.0
+offset_top = -22.5
+offset_right = 597.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_q8ut1")
+theme_override_font_sizes/font_size = 32
+text = "Congradulations! The Red Panda is saved! You are a powerful Fengshui Priest!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 273.0
+offset_top = -249.0
+offset_right = 387.0
+offset_bottom = -218.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+text = "Restart Game"
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 784.0
+offset_top = 470.0
+offset_right = 877.0
+offset_bottom = 501.0
+scale = Vector2(2, 2)
+text = "Quit Game"
+
+[connection signal="pressed" from="restart button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

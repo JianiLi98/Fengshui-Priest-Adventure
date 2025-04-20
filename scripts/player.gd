@@ -1,30 +1,25 @@
 extends CharacterBody2D
 
-@export var speed := 150.0
+@export var speed := 200.0
 @onready var anim := $AnimatedSprite2D
 
-var facing_dir := Vector2.RIGHT  # 默认朝右
+var facing_dir := Vector2.RIGHT  # \u9ed8\u8ba4\u671d\u53f3
 
 func _physics_process(delta):
-	var direction = Vector2.ZERO
+	var direction := Vector2.ZERO
+	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	direction = direction.normalized()
+	velocity = direction * speed
 
-	if Input.is_action_pressed("ui_right"):
-		direction.x += 1
-		facing_dir = Vector2.RIGHT
-	elif Input.is_action_pressed("ui_left"):
-		direction.x -= 1
-		facing_dir = Vector2.LEFT
-	elif Input.is_action_pressed("ui_up"):
-		direction.y -= 1
-		facing_dir = Vector2.UP
-	elif Input.is_action_pressed("ui_down"):
-		direction.y += 1
-		facing_dir = Vector2.DOWN
+	# \u8bbe\u7f6e facing_dir
+	if direction != Vector2.ZERO:
+		if abs(direction.x) > abs(direction.y):
+			facing_dir = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
+		else:
+			facing_dir = Vector2.DOWN if direction.y > 0 else Vector2.UP
 
-	# 设置速度（Godot 4 中必须设置 velocity）
-	velocity = direction.normalized() * speed
-
-	# 动画播放
+	# \u52a8\u753b\u64ad\u653e
 	if direction != Vector2.ZERO:
 		if abs(direction.x) > abs(direction.y):
 			anim.play("walk_right") if direction.x > 0 else anim.play("walk_left")
@@ -33,5 +28,7 @@ func _physics_process(delta):
 	else:
 		anim.stop()
 
-	# 调用 Godot 4 的移动函数（不传参数）
 	move_and_slide()
+
+func get_facing_dir() -> Vector2:
+	return facing_dir

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://betb8bvwwqd0w"
-path="res://.godot/imported/ChatGPT Image 2025年4月19日 21_36_57.png-1fa59dcf8904aec9a48aa2fafcf6d106.ctex"
+uid="uid://cdd8vtea4ko0f"
+path="res://.godot/imported/Mini Golem Sprite Sheet.png-b0461d2227780c38239766dd1cf5d978.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/kenney_monochrome-pirates/ChatGPT Image 2025年4月19日 21_36_57.png"
-dest_files=["res://.godot/imported/ChatGPT Image 2025年4月19日 21_36_57.png-1fa59dcf8904aec9a48aa2fafcf6d106.ctex"]
+source_file="res://assets/Mini Golem Sprite Sheet.png"
+dest_files=["res://.godot/imported/Mini Golem Sprite Sheet.png-b0461d2227780c38239766dd1cf5d978.ctex"]
 
 [params]
 

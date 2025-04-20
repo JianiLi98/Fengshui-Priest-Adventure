@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://byjf82lvkbdkv"]
+
+[ext_resource type="Script" uid="uid://dqdleyrkomlvx" path="res://scenes/red_panda.gd" id="1_41a61"]
+[ext_resource type="Texture2D" uid="uid://mqg6hxbi1bit" path="res://assets/Red Panda Sprite Sheet.png" id="2_c46jl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccl61"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(0, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pxnv"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(32, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jo31"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(64, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b385b"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(96, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj4o6"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(128, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vtbm"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(160, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swvju"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(192, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pci7l"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(224, 176, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbo31"]
+atlas = ExtResource("2_c46jl")
+region = Rect2(128, 144, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_emtax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccl61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pxnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jo31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b385b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj4o6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vtbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swvju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pci7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbo31")
+}],
+"loop": true,
+"name": &"panda",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emvbv"]
+size = Vector2(57, 25)
+
+[node name="RedPanda" type="Area2D"]
+script = ExtResource("1_41a61")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_emtax")
+animation = &"panda"
+frame_progress = 0.247692
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 11.5)
+shape = SubResource("RectangleShape2D_emvbv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

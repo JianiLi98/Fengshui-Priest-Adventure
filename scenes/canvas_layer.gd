@@ -65,14 +65,16 @@ func finish_drawing():
 	has_spell = true
 	hide()
 	current_spell = match_gesture(all_points)
-	print("识别结果：", current_spell)
+	print("\u8bc6\u522b\u7ed3\u679c: ", current_spell)
 
 func cast_spell():
 	if spell_manager and current_spell != "unknown":
 		var player = get_node("/root/Main/Player")
-		spell_manager.cast(current_spell, player.global_position, player.facing_dir)
+		var player_pos = player.global_position
+		var facing_dir = player.call("get_facing_dir")
+		spell_manager.call("cast", current_spell, player_pos, facing_dir)
 	else:
-		print("当前未准备好技能")
+		print("\u5f53\u524d\u672a\u51c6\u5907\u597d\u6280\u80fd")
 	has_spell = false
 
 func clear_line_container():
