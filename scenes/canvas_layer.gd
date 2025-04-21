@@ -1,9 +1,11 @@
 extends CanvasLayer
 
+
+
 @export var spell_anim: AnimatedSprite2D
 @export var line_container: Node2D
 
-var spell_manager: Node = null
+var spell_manager: Node = null  # 改为动态获取
 var is_drawing := false
 var has_spell := false
 var current_spell := "none"
@@ -18,11 +20,11 @@ func _ready():
 	hide()
 	spell_anim.visible = false
 
-	# ✅ 根据你的节点结构，正确路径如下：
-	if has_node("/root/Main/Player/CanvasLayer/Line2D/SpellManager"):
-		spell_manager = get_node("/root/Main/Player/CanvasLayer/Line2D/SpellManager")
+	# ⚠️ 修改为你实际场景中 SpellManager 节点的路径
+	if has_node("/root/Main/SpellManager"):
+		spell_manager = get_node("/root/Main/SpellManager")
 	else:
-		push_error("❌ 找不到 SpellManager，请确认路径是否正确")
+		push_error("❌ 找不到 SpellManager 节点，请确认路径是否正确")
 
 func _input(event):
 	if event.is_action_pressed("draw_spell") and not is_drawing and not has_spell:
@@ -59,7 +61,7 @@ func _input(event):
 			return
 
 		var cast_position = Vector2(600, 400)  # 固定播放位置（可改）
-		var cast_direction = Vector2(1, 0)     # 固定方向（向右）
+		var cast_direction = Vector2(1, 0)     # 固定方向向右（可改）
 
 		spell_manager.call("cast", current_spell, cast_position, cast_direction)
 
@@ -91,6 +93,7 @@ func clear_line_container():
 
 func match_gesture(points: Array[Vector2]) -> String:
 	if points.size() < 2:
+		
 		return "unknown"
 
 	var start = points[0]
@@ -105,3 +108,9 @@ func match_gesture(points: Array[Vector2]) -> String:
 		2: return "fire"
 		3: return "stone"
 		_: return "unknown"
+		
+	
+		
+
+
+	

@@ -88,5 +88,5 @@ position = Vector2(601.5, 408)
 scale = Vector2(2.85938, 2.5625)
 sprite_frames = SubResource("SpriteFrames_tuqhi")
 animation = &"fire"
-frame_progress = 0.0434322
+frame_progress = 0.436662
 script = ExtResource("2_xqmqg")

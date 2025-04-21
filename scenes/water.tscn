@@ -88,5 +88,5 @@ position = Vector2(474, 324)
 scale = Vector2(3.57812, 2.82812)
 sprite_frames = SubResource("SpriteFrames_qhskj")
 animation = &"cast"
-frame_progress = 0.265259
+frame_progress = 0.756737
 script = ExtResource("2_s3811")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://bohho24m5uvlv"]
+[gd_scene load_steps=118 format=3 uid="uid://bohho24m5uvlv"]
 
 [ext_resource type="Script" uid="uid://dscbps14r66fs" path="res://scripts/player.gd" id="1_rvslj"]
 [ext_resource type="Script" uid="uid://3roor24cn2wb" path="res://scenes/main.gd" id="1_vcsgt"]
@@ -10,16 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://f3hxe2n8p3wp" path="res://assets/ChatGPT Image 2025年4月19日 21_36_13.png" id="6_wp0k4"]
 [ext_resource type="Script" uid="uid://bdu14rx8fvbdf" path="res://scenes/line_2d.gd" id="7_bjd11"]
 [ext_resource type="Script" uid="uid://c5ethc7ystssu" path="res://scenes/animated_sprite_2d.gd" id="7_wp0k4"]
-[ext_resource type="Script" uid="uid://bmmuuiti06hgd" path="res://scenes/node_2d.gd" id="8_qmy6f"]
-[ext_resource type="PackedScene" uid="uid://bcohxp0gc6xiv" path="res://scenes/fire.tscn" id="9_1nqs0"]
-[ext_resource type="PackedScene" uid="uid://d4mwm7ymoxxti" path="res://scenes/water.tscn" id="10_1iba3"]
+[ext_resource type="Script" uid="uid://bcuo6756w5fo" path="res://scenes/spell_manager.gd" id="8_cvmbd"]
 [ext_resource type="PackedScene" uid="uid://diwejupr0sfyh" path="res://scenes/wind.tscn" id="11_yxlcp"]
-[ext_resource type="PackedScene" uid="uid://do4tsi7tqe70o" path="res://scenes/stone.tscn" id="12_ebg2g"]
 [ext_resource type="Texture2D" uid="uid://cdd8vtea4ko0f" path="res://assets/Mini Golem Sprite Sheet.png" id="13_qmy6f"]
 [ext_resource type="Texture2D" uid="uid://blikd1aciaf0r" path="res://assets/Mimic Sprite Sheet.png" id="14_mwfav"]
 [ext_resource type="AudioStream" uid="uid://cwjcfb74fswds" path="res://assets/music/adventure-music-229534.mp3" id="15_3p2gp"]
 [ext_resource type="FontFile" uid="uid://di38owkky00jr" path="res://assets/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="16_ft6cd"]
 [ext_resource type="Script" uid="uid://dikfk0g6pukb" path="res://scenes/info_popup.gd" id="17_bb450"]
+[ext_resource type="Script" uid="uid://d4egf4kxhm63f" path="res://scenes/spelllayer.gd" id="18_1iba3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rarhs"]
 texture = ExtResource("3_0bbpv")
@@ -928,14 +926,6 @@ script = ExtResource("7_wp0k4")
 [node name="Line2D" type="Line2D" parent="Player/CanvasLayer"]
 script = ExtResource("7_bjd11")
 
-[node name="SpellManager" type="Node2D" parent="Player/CanvasLayer/Line2D"]
-position = Vector2(648, 337)
-script = ExtResource("8_qmy6f")
-fire_spell_scene = ExtResource("9_1nqs0")
-water_spell_scene = ExtResource("10_1iba3")
-wind_spell_scene = ExtResource("11_yxlcp")
-stone_spell_scene = ExtResource("12_ebg2g")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(84.375, 490.625)
 sprite_frames = SubResource("SpriteFrames_cm0pq")
@@ -1112,6 +1102,14 @@ text = "draw a talisman to cast a spell and seal the ghost:
 💧 Water Spell (4 strokes) → defeats Barrel Ghosts
 
 click anywhere to close window"
+
+[node name="SpellManager" type="Node2D" parent="."]
+position = Vector2(409, 145)
+script = ExtResource("8_cvmbd")
+wind_spell_scene = ExtResource("11_yxlcp")
+
+[node name="Spelllayer" type="Node" parent="."]
+script = ExtResource("18_1iba3")
 
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]
 [connection signal="rescued" from="RedPanda" to="." method="_on_red_panda_rescued"]
