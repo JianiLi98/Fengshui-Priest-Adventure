@@ -1,53 +1,47 @@
-# ghost.gd
-# 让鬼魂在地图可通行区域内随机漫游并自动绕开障碍
-
 extends CharacterBody2D
 
-@export var speed := 100.0
+@export var speed: float = 100.0
+@export var point_b: Vector2
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-# 存放当前要漫游到的目标点
-var target: Vector2
+var point_a: Vector2
+var moving_to_b := true
+var is_dead := false
 
 func _ready():
-	randomize()                        # 不同运行随机不同
-	$AnimatedSprite2D.play("ghost")   # 播放鬼魂动画
-	_pick_new_target()                 # 刚开始就选个地方去
-	
+	sprite.play("ghost")
+	add_to_group("ghosts")
+	point_a = global_position
+
 func _physics_process(delta):
-	# 到达当前目标则重新选
-	if global_position.distance_to(target) < 8:
-		_pick_new_target()
+	if is_dead:
+		return
 
-	# 通知导航组件去 target
-	$NavigationAgent2D.target_position = target
+	# 1. 选择目标点（GDScript 的 inline if 写法）
+	var target: Vector2 = point_b if moving_to_b else point_a
 
-	# 如果导航没结束，就继续往下一个导航点移动
-	if not $NavigationAgent2D.is_navigation_finished():
-		var next_point = $NavigationAgent2D.get_next_path_position()
-		velocity = (next_point - global_position).normalized() * speed
-		move_and_slide()
-	else:
-		velocity = Vector2.ZERO
+	# 2. 向目标点移动
+	var dir = (target - global_position).normalized()
+	velocity = dir * speed
+	move_and_slide()
 
+	# 3. 简单“到达”检测，小于阈值就切换方向
+	if moving_to_b and global_position.distance_to(point_b) < 2.0:
+		moving_to_b = false
+	elif not moving_to_b and global_position.distance_to(point_a) < 2.0:
+		moving_to_b = true
 
-func _pick_new_target():
-	# 1. 拿到场景中的 TileMap
-	var tm = get_tree().get_current_scene().get_node("TileMap") as TileMap
-	# 2. 获取已使用的瓦片矩形（tile 单位）
-	var used = tm.get_used_rect()
-	# 3. 在该矩形范围内随机选一个格子坐标
-	var cell_x = randi_range(used.position.x, used.position.x + used.size.x - 1)
-	var cell_y = randi_range(used.position.y, used.position.y + used.size.y - 1)
-	var cell = Vector2i(cell_x, cell_y)
-	# 4. 把格子坐标转换成世界坐标，作为新的目标
-	#    map_to_world 返回的是该瓦片左上角位置
-	var tile_size = tm.tile_set.tile_size
-	target = cell * tile_size
-	print("👻 Ghost new target:", target)
-	
+func die():
+	if is_dead:
+		return
+	is_dead = true
+	sprite.play("die")
+	$CollisionShape2D.disabled = true
+	$Area2D.monitoring = false
+	await sprite.animation_finished
+	queue_free()
 
-func _on_area_2d_body_entered(body: Node2D): 
-	if body.name == "Player":
-		print("👻 玩家被鬼魂抓住！")
-		get_tree().change_scene_to_file("res://scenes/LoseScreen.tscn")
-		
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "Player" and not is_dead:
+		if body.has_method("die"):
+			body.die()

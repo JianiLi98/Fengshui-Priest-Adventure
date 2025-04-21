@@ -1,7 +1,39 @@
-[gd_scene load_steps=18 format=3 uid="uid://bd1bvuo2c20yw"]
+[gd_scene load_steps=26 format=3 uid="uid://bd1bvuo2c20yw"]
 
 [ext_resource type="Script" uid="uid://2g1a3lugdqoj" path="res://scenes/ghost.gd" id="1_bo3t2"]
 [ext_resource type="Texture2D" uid="uid://da6uuu20bska3" path="res://assets/Brain Mole Monarch Sprite Sheet.png" id="2_ggg0v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggg0v"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rt3w"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqks1"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob1di"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb20f"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfj7w"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnf8i"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgqoy"]
+atlas = ExtResource("2_ggg0v")
+region = Rect2(192, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u3ic"]
 atlas = ExtResource("2_ggg0v")
@@ -55,6 +87,35 @@ region = Rect2(96, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ggg0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rt3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqks1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob1di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb20f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfj7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnf8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgqoy")
+}],
+"loop": false,
+"name": &"die",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7u3ic")
 }, {
 "duration": 1.0,
@@ -96,26 +157,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggg0v"]
-size = Vector2(130, 110)
+size = Vector2(65, 68)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7u3ic"]
-radius = 107.019
+radius = 56.0
 
 [node name="Ghost" type="CharacterBody2D"]
 script = ExtResource("1_bo3t2")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 4.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ggg0v")
-animation = &"ghost"
+animation = &"die"
 frame = 7
-frame_progress = 0.468474
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 13)
+position = Vector2(0.5, 8)
 shape = SubResource("RectangleShape2D_ggg0v")
 
 [node name="Area2D" type="Area2D" parent="."]

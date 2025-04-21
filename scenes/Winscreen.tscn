@@ -1,8 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgtsjouyy6ylr"]
+[gd_scene load_steps=10 format=3 uid="uid://bgtsjouyy6ylr"]
 
+[ext_resource type="FontFile" uid="uid://di38owkky00jr" path="res://assets/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="1_00vd3"]
 [ext_resource type="Script" uid="uid://c7tosdlqt4edr" path="res://scenes/winscreen.gd" id="1_uirh1"]
+[ext_resource type="Texture2D" uid="uid://buq548t0n68st" path="res://assets/textures/ghost_taoist_background.png" id="3_yd1bd"]
+[ext_resource type="FontFile" uid="uid://baj2s1prfqevw" path="res://assets/fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="4_knni3"]
+[ext_resource type="AudioStream" uid="uid://b0auh134i4n18" path="res://assets/music/asian-music-cinematic-223807.mp3" id="4_yd1bd"]
+
+[sub_resource type="Theme" id="Theme_knni3"]
+default_font = ExtResource("1_00vd3")
 
 [sub_resource type="FontVariation" id="FontVariation_q8ut1"]
+base_font = ExtResource("4_knni3")
+
+[sub_resource type="Theme" id="Theme_00vd3"]
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_yd1bd"]
+default_font_size = 45
 
 [node name="WinScreen" type="Control"]
 layout_mode = 3
@@ -11,7 +25,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_knni3")
 script = ExtResource("1_uirh1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1276.0
+offset_bottom = 738.0
+texture = ExtResource("3_yd1bd")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -20,15 +44,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -597.0
-offset_top = -22.5
-offset_right = 597.0
-offset_bottom = 22.5
+offset_left = -646.0
+offset_top = -246.0
+offset_right = 640.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_q8ut1")
-theme_override_font_sizes/font_size = 32
-text = "Congradulations! The Red Panda is saved! You are a powerful Fengshui Priest!"
+theme_override_font_sizes/font_size = 55
+text = "Congradulations! 
+The Red Panda is saved! 
+You are a powerful Fengshui Priest!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -37,23 +63,28 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 273.0
-offset_top = -249.0
-offset_right = 387.0
-offset_bottom = -218.0
+offset_left = 245.0
+offset_top = -219.0
+offset_right = 480.0
+offset_bottom = -150.0
 grow_vertical = 0
-scale = Vector2(2, 2)
-text = "Restart Game"
+theme = SubResource("Theme_00vd3")
+text = "Restart"
 
 [node name="quit" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 784.0
-offset_top = 470.0
-offset_right = 877.0
-offset_bottom = 501.0
-scale = Vector2(2, 2)
-text = "Quit Game"
+offset_left = 822.0
+offset_top = 493.0
+offset_right = 1025.0
+offset_bottom = 562.0
+theme = SubResource("Theme_yd1bd")
+text = "Quit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yd1bd")
+volume_db = -6.0
+autoplay = true
 
 [connection signal="pressed" from="restart button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

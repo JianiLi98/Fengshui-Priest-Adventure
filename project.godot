@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fengshui Priest Adventure"
-run/main_scene="uid://bohho24m5uvlv"
+run/main_scene="uid://b5xlwn3gnfh7l"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

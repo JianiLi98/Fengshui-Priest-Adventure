@@ -2,33 +2,53 @@ extends CharacterBody2D
 
 @export var speed := 200.0
 @onready var anim := $AnimatedSprite2D
+@onready var spell_canvas := get_node("/root/Main/Player/CanvasLayer")
 
 var facing_dir := Vector2.RIGHT  # \u9ed8\u8ba4\u671d\u53f3
 
 func _physics_process(delta):
-	var direction := Vector2.ZERO
+	var direction = Vector2.ZERO
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	direction.y = Input.get_action_strength("ui_down")  - Input.get_action_strength("ui_up")
 	direction = direction.normalized()
-	velocity = direction * speed
 
-	# \u8bbe\u7f6e facing_dir
 	if direction != Vector2.ZERO:
+		# decide horizontal vs vertical
 		if abs(direction.x) > abs(direction.y):
-			facing_dir = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
+			if direction.x > 0:
+				anim.play("walk_right")
+			else:
+				anim.play("walk_left")
 		else:
-			facing_dir = Vector2.DOWN if direction.y > 0 else Vector2.UP
-
-	# \u52a8\u753b\u64ad\u653e
-	if direction != Vector2.ZERO:
-		if abs(direction.x) > abs(direction.y):
-			anim.play("walk_right") if direction.x > 0 else anim.play("walk_left")
-		else:
-			anim.play("walk_down") if direction.y > 0 else anim.play("walk_up")
+			if direction.y > 0:
+				anim.play("walk_down")
+			else:
+				anim.play("walk_up")
 	else:
 		anim.stop()
-
+		
+	velocity = direction * speed
 	move_and_slide()
 
 func get_facing_dir() -> Vector2:
 	return facing_dir
+	
+func die():
+	print("You died!")
+
+	# 切换到失败界面
+	get_tree().change_scene_to_file("res://scenes/LoseScreen.tscn")
+
+
+func _on_attack_area_body_entered(body: Node2D):
+	if body.is_in_group("ghosts") and spell_canvas.has_spell:
+		if body.has_method("die"):
+			body.die()
+			
+func _process(delta):
+	if Input.is_action_just_pressed("cast_spell"):
+		if spell_canvas.has_spell:  # drawn spell
+			$AttackArea.monitoring = true
+			await get_tree().create_timer(0.2).timeout
+			$AttackArea.monitoring = false
+	spell_canvas.has_spell = false
