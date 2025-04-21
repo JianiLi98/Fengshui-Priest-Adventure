@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dfglxg0uv4dot" path="res://assets/Priest.png" id="2_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://byjf82lvkbdkv" path="res://scenes/Red Panda.tscn" id="2_rarhs"]
 [ext_resource type="Texture2D" uid="uid://be1bo7a8pwsmj" path="res://assets/kenney_monochrome-pirates/Monochrome/Tilemap/tilemap.png" id="3_0bbpv"]
-[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="5_lhr70"]
+[ext_resource type="Script" uid="uid://vg81ux5nxpfx" path="res://scenes/canvas_layer.gd" id="5_lhr70"]
 [ext_resource type="PackedScene" uid="uid://bd1bvuo2c20yw" path="res://scenes/Ghost.tscn" id="6_c01mt"]
 [ext_resource type="Texture2D" uid="uid://f3hxe2n8p3wp" path="res://assets/ChatGPT Image 2025年4月19日 21_36_13.png" id="6_wp0k4"]
 [ext_resource type="Script" path="res://scenes/line_2d.gd" id="7_bjd11"]
@@ -1229,13 +1229,9 @@ script = ExtResource("7_wp0k4")
 [node name="Line2D" type="Line2D" parent="Player/CanvasLayer"]
 script = ExtResource("7_bjd11")
 
-[node name="SpellManager" type="Node2D" parent="Player/CanvasLayer" node_paths=PackedStringArray("fire_anim", "water_anim", "wind_anim", "stone_anim")]
+[node name="SpellManager" type="Node2D" parent="Player/CanvasLayer"]
 position = Vector2(648, 337)
 script = ExtResource("8_qmy6f")
-fire_anim = NodePath("../../AnimatedSprite2D")
-water_anim = NodePath("../../AnimatedSprite2D")
-wind_anim = NodePath("../../AnimatedSprite2D")
-stone_anim = NodePath("../../AnimatedSprite2D")
 
 [node name="Spell" type="AnimatedSprite2D" parent="Player/CanvasLayer/SpellManager"]
 position = Vector2(-545, 217)
@@ -1404,8 +1400,8 @@ script = ExtResource("17_bb450")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer1/InfoPopup"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_right = 958.0
+offset_bottom = 328.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer1/InfoPopup/VBoxContainer"]

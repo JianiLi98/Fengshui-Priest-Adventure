@@ -88,12 +88,13 @@ func match_gesture(points: Array[Vector2]) -> String:
 	var start = points[0]
 	var end = points[-1]
 
-	if start.distance_to(end) < 20.0:
-		return "water"
+	#if start.distance_to(end) < 20.0:
+		#return "water"
 
 	var stroke_count = line_container.get_child_count()
 	match stroke_count:
 		1: return "wind"
 		2: return "fire"
 		3: return "stone"
+		4: return "water"
 		_: return "unknown"
