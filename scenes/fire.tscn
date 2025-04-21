@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://bcohxp0gc6xiv"]
+
+[ext_resource type="Texture2D" uid="uid://glfkpdqxmoe5" path="res://assets/spell/Pixel_Magic_Effects_Animations.png" id="1_52nqi"]
+[ext_resource type="Script" uid="uid://cy2is7b1t31af" path="res://scenes/spell_base.gd" id="2_xqmqg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqmqg"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5mbl"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rach5"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txieb"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l61p"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10wrr"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_theev"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l77w"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajlmw"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia3m4"]
+atlas = ExtResource("1_52nqi")
+region = Rect2(0, 576, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuqhi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqmqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5mbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rach5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txieb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l61p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10wrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_theev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajlmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia3m4")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="Fire" type="Node2D"]
+
+[node name="fireSpell" type="AnimatedSprite2D" parent="."]
+position = Vector2(601.5, 408)
+scale = Vector2(2.85938, 2.5625)
+sprite_frames = SubResource("SpriteFrames_tuqhi")
+animation = &"fire"
+frame_progress = 0.0434322
+script = ExtResource("2_xqmqg")

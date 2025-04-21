@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4mwm7ymoxxti"]
+
+[ext_resource type="Texture2D" uid="uid://glfkpdqxmoe5" path="res://assets/spell/Pixel_Magic_Effects_Animations.png" id="1_bdk6y"]
+[ext_resource type="Script" uid="uid://cy2is7b1t31af" path="res://scenes/spell_base.gd" id="2_s3811"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3811"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1n2c"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewrsg"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwy5"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgdjl"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5exq1"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pb3l"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htah3"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a35vf"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6428"]
+atlas = ExtResource("1_bdk6y")
+region = Rect2(128, 576, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhskj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3811")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1n2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewrsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgdjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5exq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pb3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htah3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a35vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6428")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 5.0
+}]
+
+[node name="Water" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(474, 324)
+scale = Vector2(3.57812, 2.82812)
+sprite_frames = SubResource("SpriteFrames_qhskj")
+animation = &"cast"
+frame_progress = 0.265259
+script = ExtResource("2_s3811")

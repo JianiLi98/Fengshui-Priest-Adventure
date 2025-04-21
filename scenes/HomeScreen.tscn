@@ -268,6 +268,7 @@ autoplay = true
 
 [node name="Label4" type="Label" parent="."]
 modulate = Color(1, 1, 1, 4.28557e-05)
+layout_mode = 0
 offset_left = 35.0
 offset_top = 79.0
 offset_right = 1252.0

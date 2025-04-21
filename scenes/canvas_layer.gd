@@ -2,8 +2,8 @@ extends CanvasLayer
 
 @export var spell_anim: AnimatedSprite2D
 @export var line_container: Node2D
-@export var spell_manager: Node
 
+var spell_manager: Node = null
 var is_drawing := false
 var has_spell := false
 var current_spell := "none"
@@ -17,6 +17,12 @@ var all_points: Array[Vector2] = []
 func _ready():
 	hide()
 	spell_anim.visible = false
+
+	# ✅ 根据你的节点结构，正确路径如下：
+	if has_node("/root/Main/Player/CanvasLayer/Line2D/SpellManager"):
+		spell_manager = get_node("/root/Main/Player/CanvasLayer/Line2D/SpellManager")
+	else:
+		push_error("❌ 找不到 SpellManager，请确认路径是否正确")
 
 func _input(event):
 	if event.is_action_pressed("draw_spell") and not is_drawing and not has_spell:
@@ -46,7 +52,19 @@ func _input(event):
 			finish_drawing()
 
 	elif has_spell and event.is_action_pressed("cast_spell"):
-		cast_spell()
+		print("🟢 Q 键释放技能：", current_spell)
+
+		if not is_instance_valid(spell_manager):
+			push_error("❌ spell_manager 已被销毁或未找到")
+			return
+
+		var cast_position = Vector2(600, 400)  # 固定播放位置（可改）
+		var cast_direction = Vector2(1, 0)     # 固定方向（向右）
+
+		spell_manager.call("cast", current_spell, cast_position, cast_direction)
+
+		has_spell = false
+		current_spell = "none"
 
 func start_drawing():
 	is_drawing = true
@@ -65,17 +83,7 @@ func finish_drawing():
 	has_spell = true
 	hide()
 	current_spell = match_gesture(all_points)
-	print("\u8bc6\u522b\u7ed3\u679c: ", current_spell)
-
-func cast_spell():
-	if spell_manager and current_spell != "unknown":
-		var player = get_node("/root/Main/Player")
-		var player_pos = player.global_position
-		var facing_dir = player.call("get_facing_dir")
-		spell_manager.call("cast", current_spell, player_pos, facing_dir)
-	else:
-		print("\u5f53\u524d\u672a\u51c6\u5907\u597d\u6280\u80fd")
-	has_spell = false
+	print("🔍 识别结果: ", current_spell)
 
 func clear_line_container():
 	for c in line_container.get_children():
@@ -88,13 +96,12 @@ func match_gesture(points: Array[Vector2]) -> String:
 	var start = points[0]
 	var end = points[-1]
 
-	#if start.distance_to(end) < 20.0:
-		#return "water"
+	if start.distance_to(end) < 20.0:
+		return "water"
 
 	var stroke_count = line_container.get_child_count()
 	match stroke_count:
 		1: return "wind"
 		2: return "fire"
 		3: return "stone"
-		4: return "water"
 		_: return "unknown"

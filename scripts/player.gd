@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed := 200.0
 @onready var anim := $AnimatedSprite2D
-@onready var spell_canvas := get_node("/root/Main/Player/CanvasLayer")
+@onready var spell_canvas := get_node("CanvasLayer")
 
 var facing_dir := Vector2.RIGHT  # \u9ed8\u8ba4\u671d\u53f3
 
@@ -44,11 +44,4 @@ func _on_attack_area_body_entered(body: Node2D):
 	if body.is_in_group("ghosts") and spell_canvas.has_spell:
 		if body.has_method("die"):
 			body.die()
-			
-func _process(delta):
-	if Input.is_action_just_pressed("cast_spell"):
-		if spell_canvas.has_spell:  # drawn spell
-			$AttackArea.monitoring = true
-			await get_tree().create_timer(0.2).timeout
-			$AttackArea.monitoring = false
-	spell_canvas.has_spell = false
+	
