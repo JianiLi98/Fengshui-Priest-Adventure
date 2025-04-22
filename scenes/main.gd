@@ -1,11 +1,14 @@
 extends Node2D
 
-func _ready():
-	$CanvasLayer1/InfoButton.pressed.connect(_on_info_button_pressed)
+@onready var info_popup := $CanvasLayer1/InfoPopup
 
-func _on_info_button_pressed():
-	$CanvasLayer1/InfoPopup.popup_centered()
+func _unhandled_input(event):
+	if event.is_action_pressed("open_info"):
+		if info_popup.visible:
+			info_popup.hide()
+		else:
+			info_popup.popup_centered()
 
 func _on_red_panda_rescued():
-	print("🎉 成功拯救小熊猫！")
+	print("saved panda！")
 	get_tree().change_scene_to_file("res://scenes/WinScreen.tscn")  # 或显示提示

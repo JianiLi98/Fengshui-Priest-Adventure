@@ -1,11 +1,10 @@
 extends CanvasLayer
 
-
-
 @export var spell_anim: AnimatedSprite2D
 @export var line_container: Node2D
+@onready var player := get_node("/root/Main/Player")
 
-var spell_manager: Node = null  # 改为动态获取
+var spell_manager: Node = null
 var is_drawing := false
 var has_spell := false
 var current_spell := "none"
@@ -16,6 +15,9 @@ const PADDING_Y := 160.0
 var current_line: Line2D = null
 var all_points: Array[Vector2] = []
 
+@onready var spell_popup_label := get_node("/root/Main/SpellPopupLayer/SpellPopupLabel")
+
+
 func _ready():
 	hide()
 	spell_anim.visible = false
@@ -24,9 +26,10 @@ func _ready():
 	if has_node("/root/Main/SpellManager"):
 		spell_manager = get_node("/root/Main/SpellManager")
 	else:
-		push_error("❌ 找不到 SpellManager 节点，请确认路径是否正确")
+		push_error("not found SpellManager")
 
 func _input(event):
+	
 	if event.is_action_pressed("draw_spell") and not is_drawing and not has_spell:
 		start_drawing()
 
@@ -54,14 +57,14 @@ func _input(event):
 			finish_drawing()
 
 	elif has_spell and event.is_action_pressed("cast_spell"):
-		print("🟢 Q 键释放技能：", current_spell)
+		print("Q releases spell：", current_spell)
 
 		if not is_instance_valid(spell_manager):
-			push_error("❌ spell_manager 已被销毁或未找到")
+			push_error("spell_manager not found")
 			return
 
-		var cast_position = Vector2(600, 400)  # 固定播放位置（可改）
-		var cast_direction = Vector2(1, 0)     # 固定方向向右（可改）
+		var cast_position = Vector2(600, 400) 
+		var cast_direction = Vector2(1, 0) 
 
 		spell_manager.call("cast", current_spell, cast_position, cast_direction)
 
@@ -82,10 +85,33 @@ func start_drawing():
 
 func finish_drawing():
 	is_drawing = false
-	has_spell = true
 	hide()
 	current_spell = match_gesture(all_points)
-	print("🔍 识别结果: ", current_spell)
+	print("🪄 识别结果: ", current_spell)
+
+	has_spell = true
+
+	# ✨ 第一步：展示画了什么符咒
+	await show_spell_popup("You drew: %s spell!" % current_spell.capitalize())
+
+	# ✨ 第二步：判断攻击范围内是否有鬼
+	var attack_area = player.get_node("AttackArea")
+	var ghosts_killed := false
+
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("ghosts") and body.has_method("die"):
+			body.die()
+			ghosts_killed = true
+
+	# ✨ 第三步：根据是否成功杀鬼展示不同提示
+	if ghosts_killed:
+		await show_spell_popup("✅ Killed with %s spell!" % current_spell.capitalize())
+	else:
+		await show_spell_popup("❌ No ghost nearby.")
+
+	# 重置状态
+	has_spell = false
+	current_spell = "none"
 
 func clear_line_container():
 	for c in line_container.get_children():
@@ -99,18 +125,25 @@ func match_gesture(points: Array[Vector2]) -> String:
 	var start = points[0]
 	var end = points[-1]
 
-	if start.distance_to(end) < 20.0:
-		return "water"
 
 	var stroke_count = line_container.get_child_count()
 	match stroke_count:
 		1: return "wind"
 		2: return "fire"
 		3: return "stone"
+		4: return "water"
 		_: return "unknown"
 		
 	
-		
+func show_spell_popup(message: String) -> void:
+	if not spell_popup_label:
+		push_error("Label not found")
+		return
+
+	spell_popup_label.text = message
+	spell_popup_label.visible = true
+	await get_tree().create_timer(1.5).timeout
+	spell_popup_label.visible = false
 
 
 	

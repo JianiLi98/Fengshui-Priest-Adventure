@@ -258,7 +258,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_l1h2q")
 text = "Oh no! A red panda is trapped in a 
 haunted maze :(( We need your help as a 
 Fengshui Priest to cast your spells
-on the monsters and save the panda!"
+on the monsters and save the panda!
+(wait to know how to cast...)"
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -278,7 +279,9 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_gi7ve")
 text = "Hit 'space' to start drawing a tailsman
- hit 'enter' to complete  drawing
-hit 'q' to cast spell
-and seal the ghosts!"
+ hit 'enter' to complete drawing 
+and casts spell to seal the ghosts!
+
+(you can always check by hitting 'I' 
+key to see your spells)"
 horizontal_alignment = 1

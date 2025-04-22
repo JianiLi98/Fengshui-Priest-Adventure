@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://bohho24m5uvlv"]
+[gd_scene load_steps=120 format=3 uid="uid://bohho24m5uvlv"]
 
 [ext_resource type="Script" uid="uid://dscbps14r66fs" path="res://scripts/player.gd" id="1_rvslj"]
 [ext_resource type="Script" uid="uid://3roor24cn2wb" path="res://scenes/main.gd" id="1_vcsgt"]
@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://vg81ux5nxpfx" path="res://scenes/canvas_layer.gd" id="5_lhr70"]
 [ext_resource type="PackedScene" uid="uid://bd1bvuo2c20yw" path="res://scenes/Ghost.tscn" id="6_c01mt"]
 [ext_resource type="Texture2D" uid="uid://f3hxe2n8p3wp" path="res://assets/ChatGPT Image 2025年4月19日 21_36_13.png" id="6_wp0k4"]
-[ext_resource type="Script" uid="uid://bdu14rx8fvbdf" path="res://scenes/line_2d.gd" id="7_bjd11"]
-[ext_resource type="Script" uid="uid://c5ethc7ystssu" path="res://scenes/animated_sprite_2d.gd" id="7_wp0k4"]
+[ext_resource type="Script" path="res://scenes/line_2d.gd" id="7_bjd11"]
+[ext_resource type="Script" path="res://scenes/animated_sprite_2d.gd" id="7_wp0k4"]
 [ext_resource type="Script" uid="uid://bcuo6756w5fo" path="res://scenes/spell_manager.gd" id="8_cvmbd"]
 [ext_resource type="PackedScene" uid="uid://diwejupr0sfyh" path="res://scenes/wind.tscn" id="11_yxlcp"]
 [ext_resource type="Texture2D" uid="uid://cdd8vtea4ko0f" path="res://assets/Mini Golem Sprite Sheet.png" id="13_qmy6f"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://di38owkky00jr" path="res://assets/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="16_ft6cd"]
 [ext_resource type="Script" uid="uid://dikfk0g6pukb" path="res://scenes/info_popup.gd" id="17_bb450"]
 [ext_resource type="Script" uid="uid://d4egf4kxhm63f" path="res://scenes/spelllayer.gd" id="18_1iba3"]
+[ext_resource type="FontFile" uid="uid://baj2s1prfqevw" path="res://assets/fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="19_nfivy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rarhs"]
 texture = ExtResource("3_0bbpv")
@@ -290,10 +291,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvslj"]
 radius = 20.0
-height = 67.6923
+height = 60.35
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bjd11"]
-radius = 75.1991
+radius = 87.5035
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_siyqs"]
 atlas = ExtResource("13_qmy6f")
@@ -892,6 +893,9 @@ expand_margin_bottom = 2.0
 default_font = ExtResource("16_ft6cd")
 default_font_size = 30
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1iba3"]
+bg_color = Color(0.105882, 0.105882, 0.184314, 0.509804)
+
 [node name="Main" type="Node2D"]
 position = Vector2(239, 192)
 script = ExtResource("1_vcsgt")
@@ -908,7 +912,7 @@ layer_1/tile_data = PackedInt32Array(720895, 458754, 2, 655360, 458754, 2, 65536
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(-232, -185)
-scale = Vector2(1.28, 1.28)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_rvslj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" node_paths=PackedStringArray("spell_anim", "line_container")]
@@ -1044,7 +1048,7 @@ position = Vector2(0, 13.125)
 position = Vector2(89, 48)
 
 [node name="CollisionShape2D" parent="Ghost3/Area2D" index="0"]
-position = Vector2(-89, -40)
+position = Vector2(-90, -36)
 
 [node name="Ghost" parent="." instance=ExtResource("6_c01mt")]
 position = Vector2(0, 466)
@@ -1073,33 +1077,39 @@ autoplay = true
 
 [node name="CanvasLayer1" type="CanvasLayer" parent="."]
 
-[node name="InfoButton" type="Button" parent="CanvasLayer1"]
-offset_left = 44.0
-offset_top = 44.0
-offset_right = 177.0
-offset_bottom = 87.0
+[node name="InfoLabel" type="Label" parent="CanvasLayer1"]
+offset_left = 38.0
+offset_top = 45.0
+offset_right = 363.0
+offset_bottom = 84.0
 theme = SubResource("Theme_nfivy")
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_1nqs0")
-text = "My spells"
+text = "hit ' I ' key see my spells"
+horizontal_alignment = 1
 
 [node name="InfoPopup" type="PopupPanel" parent="CanvasLayer1"]
+size = Vector2i(1165, 467)
 script = ExtResource("17_bb450")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer1/InfoPopup"]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 958.0
-offset_bottom = 328.0
+offset_right = 1161.0
+offset_bottom = 463.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer1/InfoPopup/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_1iba3")
-text = "draw a talisman to cast a spell and seal the ghost: 
-🍃 Wind Spell (1 stroke) → defeats Brain Mole monster
-🔥 Fire Spell (2 strokes) → defeats Ice Ghost
-🪨 Stone Spell (3 strokes) → defeats Wooden Chest Ghosts
-💧 Water Spell (4 strokes) → defeats Barrel Ghosts
+text = "Hit 'space' to start drawing a tailsman,
+hit 'enter' to complete drawing : 
+🍃 Wind Spell → 1 stroke
+🔥 Fire Spell → 2 strokes
+🪨 Stone Spell → 3 strokes
+💧 Water Spell → 4 strokes
+
+(you can draw whatever! only the number of strokes/lines matters)
 
 click anywhere to close window"
 
@@ -1111,8 +1121,29 @@ wind_spell_scene = ExtResource("11_yxlcp")
 [node name="Spelllayer" type="Node" parent="."]
 script = ExtResource("18_1iba3")
 
+[node name="SpellPopupLayer" type="CanvasLayer" parent="."]
+
+[node name="SpellPopupLabel" type="Label" parent="SpellPopupLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -27.5
+offset_right = 20.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("19_nfivy")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1iba3")
+
 [connection signal="body_entered" from="Player/AttackArea" to="Player" method="_on_attack_area_body_entered"]
 [connection signal="rescued" from="RedPanda" to="." method="_on_red_panda_rescued"]
+[connection signal="popup_hide" from="CanvasLayer1/InfoPopup" to="." method="_on_info_popup_popup_hide"]
 
 [editable path="Ghost2"]
 [editable path="Ghost4"]

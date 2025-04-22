@@ -36,7 +36,6 @@ func get_facing_dir() -> Vector2:
 func die():
 	print("You died!")
 
-	# 切换到失败界面
 	get_tree().change_scene_to_file("res://scenes/LoseScreen.tscn")
 
 

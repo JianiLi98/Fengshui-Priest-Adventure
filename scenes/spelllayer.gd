@@ -12,11 +12,10 @@ func _input(event):
 	# 按下空格开始识别（测试用，可替换为你画符识别逻辑）
 	if event.is_action_pressed("draw_spell"):
 		current_spell = match_gesture()
-		print("🪄 识别结果：", current_spell)
 
 	# 按下 Q（或你自定义的释放键）释放当前 spell
 	if event.is_action_pressed("cast_spell") and current_spell != "none":
-		print("✨ 释放技能：", current_spell)
+		print("casting：", current_spell)
 		show_spell(current_spell)
 		current_spell = "none"
 
@@ -38,7 +37,7 @@ func show_spell(spell_name: String):
 		"wind": scene = wind_spell_scene
 		"stone": scene = stone_spell_scene
 		_: 
-			push_error("❌ 未知 spell 名称：" + spell_name)
+			push_error("unknown name：" + spell_name)
 			return
 
 	current_spell_instance = scene.instantiate()
